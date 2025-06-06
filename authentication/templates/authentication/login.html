@@ -1,0 +1,76 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="flex min-h-screen">
+    <!-- Left Section -->
+    <div class="w-1/2 bg-blue-600 text-white p-8 relative">
+        <div>
+            <div class="absolute w-24 sm:w-32 md:w-40 lg:w-48 xl:w-56 h-auto p-5">
+                <span class="text-white text-2xl font-bold">commNEUnicate</span>
+            </div>
+        </div>
+
+        <div>
+            <h1 class="font-bold text-6xl leading-tight pt-40 font-poppins tracking-tight">
+                Welcome To commNEUnicate
+            </h1>
+        </div>
+
+        <div>
+            <p class="text-lg pt-44 font-poppins font-light">
+                Authenticate, engage, and collaborate.<br />
+                Let's make it happen with commNEUnicate!
+            </p>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="w-1/2 bg-white">
+        <div class="px-8 pt-16">
+            <h1 class="text-blue text-center font-semibold text-3xl leading-snug tracking-tight font-poppins">
+                Login your account
+            </h1>
+
+            <!-- Divider -->
+            <div class="flex items-center py-6 pt-12 px-24">
+                <hr class="flex-grow border-gray" />
+                <span class="px-2 text-gray font-poppins font-medium">AS</span>
+                <hr class="flex-grow border-gray" />
+            </div>
+
+            <!-- Login Buttons -->
+            <div class="flex items-center tracking-wider justify-evenly w-full pt-12">
+                <!-- Admin Login Button -->
+                <a href="{% url 'authentication:admin_signin' %}" 
+                   class="flex items-center space-x-2 transition duration-100 {% if request.path == '/admin/signin' %}text-blue{% else %}text-gray{% endif %} hover:text-blue group">
+                    <i class="fas fa-user-shield text-2xl transition duration-100 {% if request.path == '/admin/signin' %}text-blue{% else %}text-gray{% endif %} group-hover:text-blue"></i>
+                    <span class="text-lg font-medium underline underline-offset-8 transition duration-100 font-poppins">
+                        Admin
+                    </span>
+                </a>
+
+                <!-- Student Login Button -->
+                <a href="{% url 'authentication:student_signin' %}"
+                   class="flex items-center space-x-2 transition duration-100 {% if request.path == '/student/signin' %}text-blue{% else %}text-gray{% endif %} hover:text-blue group">
+                    <i class="fas fa-user-graduate text-2xl transition duration-100 {% if request.path == '/student/signin' %}text-blue{% else %}text-gray{% endif %} group-hover:text-blue"></i>
+                    <span class="text-lg font-medium underline underline-offset-8 transition duration-100 font-poppins">
+                        Student
+                    </span>
+                </a>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="mt-8">
+                <p class="text-center text-gray text-sm font-poppins">
+                    Don't have an account? 
+                    <a href="{% if request.path == '/admin/signin' %}{% url 'authentication:admin_signup' %}{% else %}{% url 'authentication:student_signup' %}{% endif %}" 
+                       class="cursor-pointer text-blue font-medium">
+                        Sign Up
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

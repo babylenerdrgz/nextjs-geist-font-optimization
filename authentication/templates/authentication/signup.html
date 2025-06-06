@@ -1,0 +1,58 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="flex min-h-screen">
+    <!-- Left Section -->
+    <div class="w-1/2 bg-blue-600 text-white p-8 relative">
+        <div>
+            <div class="absolute w-24 sm:w-32 md:w-40 lg:w-48 xl:w-56 h-auto p-5">
+                <span class="text-white text-2xl font-bold">commNEUnicate</span>
+            </div>
+        </div>
+
+        <div>
+            <h1 class="font-bold text-6xl leading-tight pt-40 font-poppins tracking-tight">
+                Welcome To commNEUnicate
+            </h1>
+        </div>
+
+        <div>
+            <p class="text-lg pt-44 font-poppins font-light">
+                Authenticate, engage, and collaborate.<br />
+                Let's make it happen with commNEUnicate!
+            </p>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="w-1/2 bg-white">
+        <div class="px-8 pt-16">
+            <h1 class="text-blue text-center font-semibold text-3xl leading-snug tracking-tight font-poppins">
+                Create your account
+            </h1>
+
+            <!-- Divider -->
+            <div class="flex items-center py-6 pt-12 px-24">
+                <hr class="flex-grow border-gray" />
+                <span class="px-2 text-gray font-poppins font-medium">AS {{ user_type|upper }}</span>
+                <hr class="flex-grow border-gray" />
+            </div>
+
+            <!-- Sign Up Form -->
+            <div class="mt-8 px-24">
+                <form method="post" class="space-y-6">
+                    {% csrf_token %}
+                    <!-- Add your form fields here -->
+                    <div>
+                        <a href="{% if user_type == 'admin' %}{% url 'authentication:admin_signin' %}{% else %}{% url 'authentication:student_signin' %}{% endif %}" 
+                           class="text-center text-gray text-sm font-poppins block">
+                            Already have an account? <span class="text-blue font-medium">Sign In</span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
